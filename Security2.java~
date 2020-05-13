@@ -1,0 +1,167 @@
+/**
+ * Programmer: 
+ * Course:     IS 2043 008
+ * Semester:   Spring 2019
+ * Assignment: PA03
+ */
+
+public class Security2 implements CostBasis
+{
+  private String custNumber; 
+  private int purchDt; 
+  private double purchPrc; 
+  private double shares; 
+  private String symbol; 
+
+  public Security(String nbr, int date, double price, double qty, String sym) throws SecurityException
+    {
+
+  
+      this.custNumber = nbr;
+      this.purchDt = date;
+      this.purchPrc = price;
+      this.shares = qty;
+      this.symbol = sym.toUpperCase();
+
+
+
+      if(!custNumber.matches("\\d{7}") || Integer.parseInt(custNumber) < 10000)
+          {
+            throw new SecurityException("Customer number must be 7 digits long and greater than 0010000." + offeredValues());
+
+           }//end if statement
+
+      String convertDate = String.valueOf(purchDt);
+  
+      
+
+     if(convertDate.length() != 7)
+      {
+       throw new SecurityException("Purchase date must be entered in the format YYYYDDD" + offeredValues());
+  
+     }//end if statement
+
+     String year = convertDate.substring(0,4);
+     String day = convertDate.substring(4,7);   
+
+     
+
+     if(Integer.parseInt(year) < 1901 || Integer.parseInt(year) > 9999 ||
+     Integer.parseInt(day) < 001 || Integer.parseInt(day) > 365)
+       {
+        throw new SecurityException("Purchase year must be > 1900; Purchase day must be 001 to 365, inclusive." + offeredValues());
+
+        }//end if statement
+
+    }//end constructor
+
+
+
+  public final void setCustNumber(String custNumber)
+    {
+     this.custNumber = custNumber;
+
+     }//end setCustNumber
+
+
+
+  public final void setPurchDT(int purchDt)
+   {
+    this.purchDt = purchDt;
+
+   }//end setPurchDt
+
+
+
+  public final void setPurchPrc(double purchPrc)
+   {
+    this.purchPrc = purchPrc;
+
+   }//end setPurchPrc
+
+
+
+
+  public final void setShares(double shares)
+   {
+    this.shares = shares;
+
+   }//end setShares
+
+
+
+  public final void setSymbol(String symbol)
+   {
+    this.symbol = symbol;
+
+   }//end  setSymbol
+
+
+
+  public final String getCustNumber()
+   {
+    return custNumber;
+
+   }//end getCustNumber
+
+
+
+  public final int getPurchDt()
+   {
+     return purchDt;
+
+   }//end getPurchDt
+
+
+
+  public final double getPurchPrc()
+   {
+    return purchPrc;
+
+   }//end public final double getPurchPrc
+
+
+
+  public final double getShares()
+   {
+     return shares;
+
+   }//end public final double getShares
+
+
+
+  public final String getSymbol()
+   {
+    return symbol;
+
+   }//end getSymbol
+
+
+
+  public String offeredValues()
+   {
+     return String.format("%nOffered values:%n Customer number: %s%n"
+     + " Purchase date: %d%n Share price: %f"
+     + "%n Number shares: %f%n Symbol: %s%n", getCustNumber(), getPurchDt(), getPurchPrc(),
+     getShares(), getSymbol());
+
+   }//end offeredValues
+
+
+
+  public String toString()
+   {
+     StringBuilder objInfo = new StringBuilder(String.format("The Security belongs to Customer# %s;", getCustNumber()));
+
+     objInfo.append(String.format(" %.3f shares of %s were%n", getShares(), getSymbol()));
+     objInfo.append(String.format("purchased on %d for $%.2f per share.%n", getPurchDt(), getPurchPrc()));
+
+     return objInfo.toString();
+
+   }//end public String toString
+
+  @Override
+  public double calcCost() {
+   throw new UnsupportedOperationException("Not supported yet."); 
+   }
+}

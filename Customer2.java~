@@ -1,0 +1,123 @@
+/**
+ * Customer Class
+ * 
+ * Purpose: To obtain cutomer information regarding their account 
+ *          and output information regarding account preledges and
+ *          reinvestment options
+ *         
+ * Programmer: Dontez Wherry 
+ * Course:     IS 2043
+ */
+
+public class Customer {
+  
+  private String custNumber; //A unique identifier for a customer
+  private String tin; //Customer's tax reporting number - TIN, EIN, or SSN
+  private String last; //Customer's last name (or surname) as per legal identification
+  private String first; //Customer's first (or given) name as per legal indentification
+  private int margin = 0; /*Margin limit for trading; expressed as whole dollars; if equal 
+   *to zero - customer is not authorized for margin trading
+   */
+  private boolean drip; /*Indicates customer's instructions on dividend reinvestment: 
+   *true = automatic reinvestment; false by customer instruction
+   */
+  private boolean futures; //Indicates whether customer is authorized for futures contracts trading
+  
+  /* Full constructor; returns a reference to a fully formed and functional 
+   * Customer
+   */
+  public Customer(String nbr, String id, String lName, String fName, int lim, boolean reUp, boolean fAuth)
+    throws SecurityException{    
+    setCustNumber(nbr); //set "this" object's customer number
+    setTin(id); //set "this" object's tax identifier
+    setLast(lName); //set "this" object's last name
+    setFirst(fName); //set "this" object's first name
+    setMargin(lim); //set "this" object's margin limits
+    setDrip(reUp); //set "this" object's reinvestment option
+    setFutures(fAuth); //set "this" object's futures trade option     
+    
+  }//end full custructor Customer
+  
+  if(!custNumber().matches("\\d{7}") || Integer.parseInt(getCustNumber())< 10000)
+  {
+    throw new CustomerException("Customer number must be 7 digits in length and greater than 10000"); 
+  }// end if
+  
+  //Set the value of the instance variable custNumber
+  public final void setCustNumber(String nbr)
+  {
+    
+    custNumber = nbr;
+    
+  }//end method setCustNumber
+  
+  
+  //Set the value of the instance variable tin
+  public final void setTin(String id)
+  {
+    
+    tin = id;
+    
+  }//end method setTin
+  
+  
+  //Set the value of the instance variable last
+  public final void setLast(String lName)
+  {
+    
+    last = lName;
+    
+  }//end method setLast
+  
+  
+  
+  //Set the value of the instance variable first
+  public final void setFirst(String fName)
+  {
+    
+    first = fName;
+    
+  }//end method setFirst
+  
+  
+  
+  //Set the value of the instance variable margin
+  public final void setMargin(int lim)
+  {
+    
+    margin = lim; 
+    
+  }//end method setMargin
+  
+  
+  
+  //Set the value of the instance variable drip
+  public final void setDrip(boolean reUp)
+  {
+    
+    drip = reUp;
+    
+  }//end method setDrip
+  
+  
+  
+  //Set the value of the instance variable futures
+  public final void setFutures(boolean fAuth)
+  {
+    
+    futures = fAuth; 
+    
+  }//end method setFutures
+  
+  public String describeCustomer()
+  {
+          return String.format("%nCustomer %d, %s %s" +
+                               "%n%tThe account carries a margin limit of $%s.", 
+                               getCustNumber(), getFirst(), getLast(), getMargin());
+  }// end method describeCustomer
+  
+  if 
+  
+  
+  
+}//end class Customer
